@@ -1,32 +1,61 @@
 import numpy as np
+
 mundo = np.array([
     ["*", "*", "*"],
     ["*", "*", "*"],
     ["*", "*", "*"]
 ])
-linha = 0
-coluna = 0
+
+#Variáveis de definição
+linha, coluna = 0, 0
+
+#Personagem
 mundo[linha][coluna] = "#"
 print (mundo)
-def movimento(loc):
-    global linha
-    global coluna
-    global mundo
+
+def movimento():
+    global linha, coluna
     
-    jogando = True
-    while jogando:
-        try:
-            if loc == "s":
-                linha += 1
-                mundo[linha][coluna] = "#"   # desenha na nova posição
-                print(mundo)
-            
-    
-        except Exception as error:
-            print(f"Houve um erro: {error}")
-    print(mundo)
-presskey = input()
-movimento(presskey)
+    while True:
+        
+        presskey = input("Use 'w/a/s/d' e 'q' para sair: ")
+        
+        if presskey == "q":
+            break
+        
+        if not 0 < linha > mundo.shape[0] and 0 < coluna > mundo.shape[1]:
+            print("Não pode sair do mapa!")
+            continue
+        
+        if presskey == "w":
+            mundo[linha][coluna] = "*" 
+            linha -= 1
+            mundo[linha][coluna] = "#"   # desenha na nova posição
+            print(mundo)
+            continue
+        elif presskey == "s":
+            mundo[linha][coluna] = "*" 
+            linha += 1
+            mundo[linha][coluna] = "#"   # desenha na nova posição
+            print(mundo)
+            continue
+        elif presskey == "d":
+            mundo[linha][coluna] = "*" 
+            coluna += 1
+            mundo[linha][coluna] = "#"   # desenha na nova posição
+            print(mundo)
+            continue
+        elif presskey == "a":
+            mundo[linha][coluna] = "*" 
+            coluna -= 1
+            mundo[linha][coluna] = "#"   # desenha na nova posição
+            print(mundo)
+            continue
+        else:
+            print("Digite um número válido")
+            continue
+        
 
 
-Por que está dando erro
+movimento()
+
